@@ -35,19 +35,5 @@ windows:
         - 
         -
         -
-  - terminalsV:
-      layout: main-vertical
-      panes:
-        -
-        - 
-        -
-        -
-  - terminalsH:
-      layout: main-horizontal
-      panes:
-        -
-        - 
-        -
-        -
   #- server: bundle exec rails s
   #- logs: tail -f log/development.log

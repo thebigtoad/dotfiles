@@ -27,6 +27,8 @@ export EDITOR=vim
 
 export PATH=$PATH:/home/andy/apps/gradle-2.10/bin
 
-alias ack='ack-grep'
-alias ll='ls -lF'
-alias la='ls -alF'
+#alias ack='ack-grep'
+#alias ll='ls -lF'
+#alias la='ls -alF'
+
+source ~/dotfiles/.aliases
