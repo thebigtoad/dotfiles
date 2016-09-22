@@ -6,3 +6,5 @@ PS1=${PS1%?}\n'$ '
 if [ "$TERM" = "xterm" ]; then
     export TERM=xterm-256color
 fi
+
+source ~/.aliases
