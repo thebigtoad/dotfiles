@@ -23,12 +23,16 @@ fi
 
 #Set vim as default editor
 export VISUAL=vim
-export EDITOR=vim
+export EDITOR=$VISUAL
 
-export PATH=$PATH:/home/andy/apps/gradle-2.10/bin
+if [ -d "/home/andy/apps/gradle-2.10/bin" ] ; then
+    export PATH=$PATH:/home/andy/apps/gradle-2.10/bin
+fi
 
-#alias ack='ack-grep'
-#alias ll='ls -lF'
-#alias la='ls -alF'
+if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/jre/" ] ; then
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/
+fi
 
-source ~/dotfiles/.aliases
+if [ -f "~/dotfiles/.aliases" ] ; then
+    source ~/dotfiles/.aliases
+fi
