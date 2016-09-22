@@ -30,6 +30,8 @@ alias gc='git commit'
 alias gp='git push'
 alias ga='git add'
 alias gw='cd ~/git_work'
+alias gd='git diff'
+alias gl='git log'
 
 # tmux
 alias tks='tmux kill-session -t '
@@ -37,4 +39,3 @@ alias ta='tmux a -t '
 alias tls='tmux ls '
 
 # tmuxinator
-
