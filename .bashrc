@@ -81,8 +81,8 @@ if [ "$TERM" = "xterm" ]; then
     export TERM=xterm-256color
 fi
 
-if [ -f ~/.bin/tmuxinator.bash ]; then
-    source ~/.bin/tmuxinator.bash
+if [ -f ~/bin/tmuxinator.bash ]; then
+    source ~/bin/tmuxinator.bash
 fi
 
 if [ -f ~/dotfiles/.aliases ] ; then
