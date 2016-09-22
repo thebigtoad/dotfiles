@@ -85,6 +85,6 @@ if [ -f ~/.bin/tmuxinator.bash ]; then
     source ~/.bin/tmuxinator.bash
 fi
 
-if [ -f "~/dotfiles/.aliases" ] ; then
+if [ -f ~/dotfiles/.aliases ] ; then
     source ~/dotfiles/.aliases
 fi
