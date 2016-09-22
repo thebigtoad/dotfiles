@@ -25,8 +25,8 @@ fi
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-if [ -d "/home/andy/apps/gradle-2.10/bin" ] ; then
-    export PATH=$PATH:/home/andy/apps/gradle-2.10/bin
+if [ -d "$HOME/apps/gradle-2.10/bin" ] ; then
+    export PATH=$PATH:$HOME/apps/gradle-2.10/bin
 fi
 
 if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/jre/" ] ; then
