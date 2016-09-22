@@ -33,6 +33,4 @@ if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/jre/" ] ; then
     export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/
 fi
 
-if [ -f "~/dotfiles/.aliases" ] ; then
-    source ~/dotfiles/.aliases
-fi
+
