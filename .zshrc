@@ -87,6 +87,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+if [ -f ~/bin/tmuxinator.bash ]; then
+    source ~/bin/tmuxinator.zsh
+fi
+
 if [ -f ~/dotfiles/.aliases ] ; then
     source ~/dotfiles/.aliases
 fi
