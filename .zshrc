@@ -86,3 +86,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+if [ -f ~/dotfiles/.aliases ] ; then
+    source ~/dotfiles/.aliases
+fi
