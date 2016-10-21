@@ -34,6 +34,12 @@ alias gw='cd ~/git_work'
 alias gd='git diff'
 alias gl='git log'
 
+# Java
+alias smj='cd src/main/java'
+alias stj='cd src/test/java'
+alias smr='cd src/main/resources'
+alias str='cd src/test/resources'
+
 # tmux
 alias tks='tmux kill-session -t '
 alias ta='tmux a -t '
