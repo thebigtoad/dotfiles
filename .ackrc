@@ -1,0 +1,24 @@
+Custom configuration for ack-grep
+
+# Always color, even if piping to a another program
+--color
+ 
+# Ignore case
+--ignore-case
+ 
+# Use less as my pager
+--pager=less -FRSX
+
+# Print a break between results from different files.
+--break
+
+# Print a filename heading above each file's results.
+--heading
+
+#Stuff to ignore
+--ignore-dir=.idea/
+--ignore-dir=node_modules/
+--ignore-dir=_book/
+
+# Add a type for markdown
+--type-set=md:ext:md
