@@ -94,3 +94,8 @@ fi
 if [ -f ~/dotfiles/.aliases ] ; then
     source ~/dotfiles/.aliases
 fi
+
+if [ -f ~/dotfiles/.local-rc ] ; then
+    source ~/dotfiles/.local-rc
+fi
+
