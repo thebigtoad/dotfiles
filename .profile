@@ -29,8 +29,9 @@ if [ -d "$HOME/apps/gradle-2.10/bin" ] ; then
     export PATH=$PATH:$HOME/apps/gradle-2.10/bin
 fi
 
-if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/jre/" ] ; then
-    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/
+if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ] ; then
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+    export PATH=$PATH:$JAVA_HOME/bin/
 fi
 
 
