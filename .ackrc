@@ -1,4 +1,4 @@
-Custom configuration for ack-grep
+# Custom configuration for ack-grep
 
 # Always color, even if piping to a another program
 --color
@@ -7,7 +7,7 @@ Custom configuration for ack-grep
 --ignore-case
  
 # Use less as my pager
---pager=less -FRSX
+--pager=less -FRX
 
 # Print a break between results from different files.
 --break
