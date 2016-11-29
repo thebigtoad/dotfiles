@@ -46,3 +46,6 @@ alias ta='tmux a -t '
 alias tls='tmux ls '
 
 # tmuxinator
+
+# docker
+alias ds='echo "" && docker images && echo "" && docker ps -a -s && echo ""'
