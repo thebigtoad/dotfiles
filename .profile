@@ -25,8 +25,8 @@ fi
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-if [ -d "$HOME/apps/gradle-2.10/bin" ] ; then
-    export PATH=$PATH:$HOME/apps/gradle-2.10/bin
+if [ -d "$HOME/apps/gradle-3.5/bin" ] ; then
+    export PATH=$PATH:$HOME/apps/gradle-3.5/bin
 fi
 
 if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ] ; then
@@ -35,3 +35,7 @@ if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ] ; then
 fi
 
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="~/.sdkman"
+[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"
