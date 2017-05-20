@@ -48,4 +48,4 @@ alias tls='tmux ls '
 # tmuxinator
 
 # docker
-alias ds='echo "" && docker images && echo "" && docker ps -a -s && echo ""'
+alias ds='echo -e "\e[96mSummary\e[0m" && docker system df && echo && echo -e "\e[96mImages\e[0m" && docker images && echo "" && echo -e "\e[96mAll containers\e[0m" && docker ps -a -s && echo "" && echo -e "\e[96mRunning containers\e[0m" && docker ps && echo ""'
