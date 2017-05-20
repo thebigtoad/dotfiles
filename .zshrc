@@ -54,7 +54,7 @@ ZSH_CUSTOM=~/dotfiles/zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git mvn tmux tmuxinator)
+plugins=(git mvn tmux tmuxinator docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,3 +99,18 @@ if [ -f ~/dotfiles/.local-rc ] ; then
     source ~/dotfiles/.local-rc
 fi
 
+#get the IP address for a running docker container, usage: dip() containerName
+dip() {                                                                                                                                        
+  docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@"
+}
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/andy/.sdkman"
+[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"
+
+# added by travis gem
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
