@@ -53,6 +53,7 @@ alias ds='echo -e "\e[96mSummary\e[0m" && docker system df && echo && echo -e "\
 # open all gradle files in vim
 alias vg='if [ -f build.gradle ]; then vim build.gradle ./*/build.gradle; else echo "No build.gradle file found"; return 1; fi'
 
+#Stops zsh globbing urls when using HTTPie, curl and wget
 alias http='noglob http'
 alias curl='noglob curl'
 alias wget='noglob wget'
