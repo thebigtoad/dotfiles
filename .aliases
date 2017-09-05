@@ -43,6 +43,7 @@ alias str='cd src/test/resources'
 # tmux
 alias tks='tmux kill-session -t '
 alias ta='tmux a -t '
+alias td='tmux detach '
 alias tls='tmux ls '
 
 # tmuxinator
