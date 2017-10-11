@@ -87,16 +87,16 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if [ -f ~/bin/tmuxinator.zsh ]; then
-    source ~/bin/tmuxinator.zsh
+if [ -f ${HOME}/bin/tmuxinator.zsh ]; then
+    source ${HOME}/bin/tmuxinator.zsh
 fi
 
-if [ -f ~/dotfiles/.aliases ] ; then
-    source ~/dotfiles/.aliases
+if [ -f ${HOME}/dotfiles/.aliases ] ; then
+    source ${HOME}/dotfiles/.aliases
 fi
 
-if [ -f ~/dotfiles/.local-rc ] ; then
-    source ~/dotfiles/.local-rc
+if [ -f ${HOME}/dotfiles/.local-rc ] ; then
+    source ${HOME}/dotfiles/.local-rc
 fi
 
 #get the IP address for a running docker container, usage: dip() containerName
@@ -105,11 +105,11 @@ dip() {
 }
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="~/.sdkman"
-[[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s ${HOME}/.sdkman/bin/sdkman-init.sh ]] && source ${HOME}/.sdkman/bin/sdkman-init.sh
 
 # added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+[ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
