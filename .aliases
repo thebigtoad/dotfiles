@@ -58,3 +58,7 @@ alias vg='if [ -f build.gradle ]; then vim build.gradle ./*/build.gradle; else e
 alias http='noglob http'
 alias curl='noglob curl'
 alias wget='noglob wget'
+
+# requires 'autoload -U zmv' in .zshrc
+alias zcp='zmv -C'
+alias zln='zmv -L'

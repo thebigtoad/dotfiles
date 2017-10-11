@@ -104,10 +104,6 @@ dip() {
   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@"
 }
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="${HOME}/.sdkman"
-[[ -s ${HOME}/.sdkman/bin/sdkman-init.sh ]] && source ${HOME}/.sdkman/bin/sdkman-init.sh
-
 # added by travis gem
 [ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
 
@@ -117,3 +113,10 @@ export NVM_DIR="$HOME/.nvm"
 
 # added by travis gem
 [ -f /home/dev/.travis/travis.sh ] && source /home/dev/.travis/travis.sh
+
+# Add the zmv command (useful for renaming files while copying them)
+autoload -U zmv
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s ${HOME}/.sdkman/bin/sdkman-init.sh ]] && source ${HOME}/.sdkman/bin/sdkman-init.sh
