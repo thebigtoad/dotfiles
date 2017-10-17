@@ -33,6 +33,7 @@ alias gaa='git add --all'
 alias gw='cd ~/git_work'
 alias gd='git diff'
 alias gl='git log'
+alias glg='git log --graph --oneline --decorate'
 
 # Java
 alias smj='cd src/main/java'
