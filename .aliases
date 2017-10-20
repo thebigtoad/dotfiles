@@ -53,7 +53,7 @@ alias tls='tmux ls '
 alias ds='echo -e "\e[96mSummary\e[0m" && docker system df && echo && echo -e "\e[96mImages\e[0m" && docker images && echo "" && echo -e "\e[96mAll containers\e[0m" && docker ps -a -s && echo "" && echo -e "\e[96mRunning containers\e[0m" && docker ps && echo ""'
 
 # open all gradle files in vim
-alias vg='if [ -f build.gradle ]; then vim build.gradle ./*/build.gradle; else echo "No build.gradle file found"; return 1; fi'
+alias vg='if [ -f build.gradle ]; then vim build.gradle ./*/*.gradle; else echo "No root build.gradle file found"; return 1; fi'
 
 #Stops zsh globbing urls when using HTTPie, curl and wget
 alias http='noglob http'
