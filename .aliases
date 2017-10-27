@@ -1,3 +1,10 @@
+#Colour constants for use in echo -e statements
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[1;34m'
+NC='\033[0m' # No Colour
+
 colorflag="--color"
 export LS_COLORS='no=00:fi=00:di=01;31:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32'
 
@@ -52,8 +59,23 @@ alias tls='tmux ls '
 # docker
 alias ds='echo -e "\e[96mSummary\e[0m" && docker system df && echo && echo -e "\e[96mImages\e[0m" && docker images && echo "" && echo -e "\e[96mAll containers\e[0m" && docker ps -a -s && echo "" && echo -e "\e[96mRunning containers\e[0m" && docker ps && echo ""'
 
+# gradle 
+
 # open all gradle files in vim
-alias vg='if [ -f build.gradle ]; then vim build.gradle ./*/*.gradle; else echo "No root build.gradle file found"; return 1; fi'
+alias vg='if [ -f build.gradle ]; then vim build.gradle ./*/*.gradle; else echo -e "${RED}No root build.gradle file found${NC}"; return 1; fi'
+
+# gradlew clean build
+gradleCleanBuild() {
+    if [ -f build.gradle ]; then 
+        ./gradlew clean build $@ 
+    else 
+        echo -e "${RED}No root build.gradle file found${NC}" 
+        return 1 
+    fi
+}
+
+alias gwcb='gradleCleanBuild'
+
 
 #Stops zsh globbing urls when using HTTPie, curl and wget
 alias http='noglob http'
