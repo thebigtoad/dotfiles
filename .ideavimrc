@@ -1,3 +1,7 @@
 source ~/.vim/vimrc
 
+" This essentially removes custom mappings from J as vimrc maps J to a
+" vimscript func that won't work in intellij
+:map J J
+
 set surround
