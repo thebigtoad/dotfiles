@@ -85,3 +85,14 @@ alias wget='noglob wget'
 # requires 'autoload -U zmv' in .zshrc
 alias zcp='zmv -C'
 alias zln='zmv -L'
+
+displayCurrentJava() {
+    echo "JAVA_HOME=${BLUE}$(readlink -f $JAVA_HOME)${NC}"
+    #sdk current java
+    java -version
+}
+
+# JDK switching
+alias j='displayCurrentJava'
+alias j8='if [ -d ~/.sdkman ]; then sdk use java 8.0.181-zulu && displayCurrentJava; else echo -e "${RED}SDKMan not installed!${NC}"; return 1; fi'
+alias j10='if [ -d ~/.sdkman ]; then sdk use java 10.0.2-zulu && displayCurrentJava; else echo -e "${RED}SDKMan not installed!${NC}"; return 1; fi'
