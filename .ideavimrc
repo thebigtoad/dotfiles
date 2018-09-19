@@ -5,3 +5,19 @@ source ~/.vim/vimrc
 :map J J
 
 set surround
+
+" Navigate split windows.
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
+" Close current split
+nnoremap <C-Z> <C-W>c
+
+" Add hippie completion to ctrl-N/P
+inoremap <C-N> <ESC>:action HippieCompletion<CR>a
+inoremap <C-P> <ESC>:action HippieBackwardCompletion<CR>a
+
+" This is currently broken in IJ 2018.2.4, the dialog doesn't get focus
+"nnoremap <C-N> :action GotoClass<CR>
