@@ -30,6 +30,9 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 
+# 'cd' to a git repo root using fzf
+alias repo='cd /home/dev/git_work/$(find ~/git_work -maxdepth 1 -type d -printf "%P\n" | fzf)'
+
 # GIT
 alias gs='git status'
 alias gpl='git pull'
