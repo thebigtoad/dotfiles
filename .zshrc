@@ -117,6 +117,10 @@ export NVM_DIR="$HOME/.nvm"
 # Add the zmv command (useful for renaming files while copying them)
 autoload -U zmv
 
+# Make ctrl-left/right arrow skip words in the shell
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
 # Added by FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
