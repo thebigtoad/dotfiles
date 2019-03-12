@@ -30,10 +30,9 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 
-# 'cd' to a git repo root using fzf
-alias repo='cd /home/dev/git_work/$(find ~/git_work -maxdepth 1 -type d -printf "%P\n" | fzf)'
 
 # GIT
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 alias gs='git status'
 alias gpl='git pull'
 alias gc='git commit -v'
@@ -44,6 +43,11 @@ alias gw='cd ~/git_work'
 alias gd='git diff'
 alias gl='git log'
 alias glg='git log --graph --oneline --decorate'
+alias gt='git tag'
+# 'cd' to a git repo root using fzf
+alias repo='cd /home/dev/git_work/$(find ~/git_work -maxdepth 1 -type d -printf "%P\n" | fzf)'
+# 'cd' to the root of the current repo
+alias root='cd $(git rev-parse --show-toplevel)'
 
 # Java
 alias smj='cd src/main/java'
@@ -70,7 +74,7 @@ alias vg='if [ -f build.gradle ]; then vim build.gradle ./**/*.gradle; else echo
 # gradlew clean build
 gradleCleanBuild() {
     if [ -f build.gradle ]; then 
-        ./gradlew clean build $@ 
+        ./gradlew clean build "$@" 
     else 
         echo -e "${RED}No root build.gradle file found${NC}" 
         return 1 
@@ -90,7 +94,7 @@ alias zcp='zmv -C'
 alias zln='zmv -L'
 
 displayCurrentJava() {
-    echo "JAVA_HOME=${BLUE}$(readlink -f $JAVA_HOME)${NC}"
+    echo "JAVA_HOME=${BLUE}$(readlink -f "${JAVA_HOME}")${NC}"
     #sdk current java
     java -version
 }
@@ -99,3 +103,8 @@ displayCurrentJava() {
 alias j='displayCurrentJava'
 alias j8='if [ -d ~/.sdkman ]; then sdk use java 8.0.181-zulu && displayCurrentJava; else echo -e "${RED}SDKMan not installed!${NC}"; return 1; fi'
 alias j10='if [ -d ~/.sdkman ]; then sdk use java 10.0.2-zulu && displayCurrentJava; else echo -e "${RED}SDKMan not installed!${NC}"; return 1; fi'
+
+# Directory history switching using FZF with fallback
+alias d='if command -v fzf; then n="$(echo "$(dirs -v | head -11 | tail -n+2 | fzf)" | cut -f1)"; cd -${n} > /dev/null; else; dirs -v | head -11 | tail -n +2; fi'
+
+
