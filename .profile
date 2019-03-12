@@ -29,13 +29,15 @@ if [ -d "$HOME/apps/gradle-3.5/bin" ] ; then
     export PATH=$PATH:$HOME/apps/gradle-3.5/bin
 fi
 
-if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ] ; then
-    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
-    export PATH=$PATH:$JAVA_HOME/bin/
-fi
+#if [ -d "/usr/lib/jvm/java-8-openjdk-amd64/" ] ; then
+#    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+#    export PATH=$PATH:$JAVA_HOME/bin/
+#fi
 
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+#shellcheck disable=SC2088
 export SDKMAN_DIR="~/.sdkman"
+#shellcheck disable=SC2088
 [[ -s "~/.sdkman/bin/sdkman-init.sh" ]] && source "~/.sdkman/bin/sdkman-init.sh"
