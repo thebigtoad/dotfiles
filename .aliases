@@ -103,6 +103,7 @@ displayCurrentJava() {
 alias j='displayCurrentJava'
 alias j8='if [ -d ~/.sdkman ]; then sdk use java 8.0.181-zulu && displayCurrentJava; else echo -e "${RED}SDKMan not installed!${NC}"; return 1; fi'
 alias j10='if [ -d ~/.sdkman ]; then sdk use java 10.0.2-zulu && displayCurrentJava; else echo -e "${RED}SDKMan not installed!${NC}"; return 1; fi'
+alias j12='if [ -d ~/.sdkman ]; then sdk use java 12.0.2-zulu && displayCurrentJava; else echo -e "${RED}SDKMan not installed!${NC}"; return 1; fi'
 
 # Directory history switching using FZF with fallback
 alias d='if command -v fzf; then n="$(echo "$(dirs -v | head -11 | tail -n+2 | fzf)" | cut -f1)"; cd -${n} > /dev/null; else; dirs -v | head -11 | tail -n +2; fi'
