@@ -21,3 +21,4 @@ inoremap <C-P> <ESC>:action HippieBackwardCompletion<CR>a
 
 " This is currently broken in IJ 2018.2.4, the dialog doesn't get focus
 "nnoremap <C-N> :action GotoClass<CR>
+set clipboard+=ideaput
