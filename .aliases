@@ -108,4 +108,5 @@ alias j12='if [ -d ~/.sdkman ]; then sdk use java 12.0.2-zulu && displayCurrentJ
 # Directory history switching using FZF with fallback
 alias d='if command -v fzf; then n="$(echo "$(dirs -v | head -11 | tail -n+2 | fzf)" | cut -f1)"; cd -${n} > /dev/null; else; dirs -v | head -11 | tail -n +2; fi'
 
+alias set_ssh_for_this_repo='git config core.sshCommand "ssh -i $(find ~/.ssh -type f -not -name "*.*" -not -name "config" -not -name "known_hosts" | fzf) -F /dev/null"'
 
