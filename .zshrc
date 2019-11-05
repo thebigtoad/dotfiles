@@ -71,6 +71,8 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -128,3 +130,7 @@ bindkey '^[[1;5C' forward-word
 export SDKMAN_DIR="${HOME}/.sdkman"
 [[ -s ${HOME}/.sdkman/bin/sdkman-init.sh ]] && source ${HOME}/.sdkman/bin/sdkman-init.sh
 
+# Set up npm global modules
+mkdir -p ~/.npm-global/bin
+export PATH=~/.npm-global/bin:$PATH
+export NPM_CONFIG_PREFIX=~/.npm-global
