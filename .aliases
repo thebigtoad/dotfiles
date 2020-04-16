@@ -46,7 +46,6 @@ alias gcaa='git add --all && git commit -v -a'
 alias gp='git push'
 alias ga='git add'
 alias gaa='git add --all'
-alias gw='cd ~/git_work'
 alias gd='git diff'
 alias gl='git log'
 alias glg='git log --graph --oneline --decorate'
@@ -83,9 +82,9 @@ alias ds='echo -e "\e[96mSummary\e[0m" && docker system df && echo && echo -e "\
 alias vg='if [ -f build.gradle ]; then vim build.gradle ./**/*.gradle; else echo -e "${RED}No root build.gradle file found${NC}"; return 1; fi'
 
 # gradlew clean build
-gradleCleanBuild() {
+gradleWrapper() {
     if [ -f build.gradle ]; then 
-        ./gradlew clean build "$@" 
+        ./gradlew "$@" 
     else 
         # shellcheck disable=SC2039
         echo -e "${RED}No root build.gradle file found${NC}" 
@@ -93,7 +92,8 @@ gradleCleanBuild() {
     fi
 }
 
-alias gwcb='gradleCleanBuild'
+alias gwcb='gradleWrapper clean build'
+alias gw='gradleWrapper'
 
 
 #Stops zsh globbing urls when using HTTPie, curl and wget
@@ -118,14 +118,33 @@ alias j10='if [ -d ~/.sdkman ]; then sdk use java 10.0.2-zulu && displayCurrentJ
 alias j12='if [ -d ~/.sdkman ]; then sdk use java 12.0.2-zulu && displayCurrentJava; else echo -e "${RED}SDKMan not installed!${NC}"; return 1; fi'
 
 # Directory history switching using FZF with fallback
+# Usage: d      # pick from a list of recent directories
+# Usage: d foo  # pick from a list of recent directories matching foo
 directory_history_fuzzy_find() {
-  if command -v fzf; then
-    # shellcheck disable=SC2005,2039
-    dir_num="$(echo "$(dirs -v | head -11 | tail -n+2 | fzf)" | cut -f1)"
+  local sub_str="$1"
+  
+  local dir_list
+  if [ -n "${sub_str}" ]; then
+    # shellcheck disable=SC2039
+    dir_list="$(dirs -v | grep -F "${sub_str}" | head -11 | tail -n+2)"
+  else
+    # shellcheck disable=SC2039
+    dir_list="$(dirs -v | head -11 | tail -n+2)"
+  fi
+
+  if command -v fzf >/dev/null; then
+    # shellcheck disable=SC2039
+    # herestrings mess up the syntax highlighting for some reason
+    selected_line="$(echo "${dir_list}" | fzf)"
+
+    # shellcheck disable=SC2039
+    # herestrings mess up the syntax highlighting for some reason
+    dir_num="$(echo "${selected_line}" | cut -f1)"
+
     cd -"${dir_num}" > /dev/null
   else
     # shellcheck disable=2039
-    dirs -v | head -11 | tail -n +2;
+    echo "${dir_list}"
   fi
 }
 
@@ -133,3 +152,4 @@ alias d='directory_history_fuzzy_find'
 
 alias set_ssh_for_this_repo='git config core.sshCommand "ssh -i $(find ~/.ssh -type f -not -name "*.*" -not -name "config" -not -name "known_hosts" | fzf) -F /dev/null"'
 
+# vim: set tabstop=2 shiftwidth=2 expandtab :
