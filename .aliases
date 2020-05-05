@@ -55,6 +55,32 @@ alias repo='cd /home/dev/git_work/$(find ~/git_work -maxdepth 1 -type d -printf 
 # 'cd' to the root of the current repo
 alias root='cd $(git rev-parse --show-toplevel)'
 
+alias gcof='git_checkout_fuzzy_find'
+
+git_checkout_fuzzy_find() {
+  local branches
+  # Get list of branches removing leading '* ' or '  '
+  branches="$(git branch --no-color | sed -r 's/^. //')"
+
+  if [ -n "${branches}" ]; then
+    local selected_branch
+    # Use echo pipe rather than her string as here string messes up the
+    # syntax highlighting
+    # shellcheck disable=SC2039
+    selected_branch="$(echo -e "${branches}" | fzf)"
+    if [ -n "${selected_branch}" ]; then
+      echo "Checking out branch: ${BLUE}${selected_branch}${NC}"
+      git checkout "${selected_branch}"
+    else
+      echo "No brance selected" >&2
+      return 1
+    fi
+  else
+    echo "No brances found" >&2
+    return 1
+  fi
+}
+
 # Java
 alias smj='cd src/main/java'
 alias stj='cd src/test/java'
