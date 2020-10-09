@@ -38,27 +38,6 @@ ask_for_confirmation() {
     printf "\n"
 }
 
-ask_for_sudo() {
-
-    # Ask for the administrator password upfront
-    sudo -v
-
-    # Update existing `sudo` time stamp until this script has finished
-    # https://gist.github.com/cowboy/3118588
-    while true; do
-        sudo -n true
-        sleep 60
-        kill -0 "$$" || exit
-    done &> /dev/null &
-
-}
-
-cmd_exists() {
-    [ -x "$(command -v "$1")" ] \
-        && printf 0 \
-        || printf 1
-}
-
 execute() {
     $1 &> /dev/null
     print_result $? "${2:-$1}"
@@ -143,7 +122,16 @@ print_success() {
 
 
 # finds all .dotfiles in this folder
-declare -a FILES_TO_SYMLINK=$(find . -type f -maxdepth 1 -name ".*" -not -name .DS_Store -not -name .git -not -name .osx | sed -e 's|//|/|' | sed -e 's|./.|.|')
+declare -a FILES_TO_SYMLINK=$( \
+    find . \
+    -maxdepth 1 \
+    -type f \
+    -name ".*" \
+    -not -name .DS_Store \
+    -not -name .git \
+    -not -name .osx \
+    | sed -e 's|//|/|' \
+    | sed -e 's|./.|.|')
 FILES_TO_SYMLINK="$FILES_TO_SYMLINK bin" # add in the binaries
 
 
@@ -161,25 +149,24 @@ main() {
         targetFile="$HOME/$(printf "%s" "$i" | sed "s/.*\/\(.*\)/\1/g")"
 
         if [ -e "$targetFile" ]; then
+            # Target file exists
             if [ "$(readlink "$targetFile")" != "$sourceFile" ]; then
+                # Target is not a link to our file so replace it
 
-                ask_for_confirmation "'$targetFile' already exists, do you want to overwrite it?"
-                if answer_is_yes; then
-                    rm -rf "$targetFile"
-                    execute "ln -fs $sourceFile $targetFile" "$targetFile → $sourceFile"
-                else
-                    print_error "$targetFile → $sourceFile"
-                fi
-
-            else
+                # Backup the existing file
+                mv "${targetFile}" "${targetFile}.$(date +%Y%m%d%H%M%S)"  
+                # Remove the existing file
+                rm -rf "${targetFile}"
+                execute "ln -fs ${sourceFile} ${targetFile}" "${targetFile} → ${sourceFile}"
                 print_success "$targetFile → $sourceFile"
             fi
         else
             execute "ln -fs $sourceFile $targetFile" "$targetFile → $sourceFile"
+            print_success "$targetFile → $sourceFile"
         fi
 
     done
-
 }
 
 main
+# vim: shiftwidth=4 tabstop=4:
