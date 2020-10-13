@@ -5,6 +5,8 @@ source ~/.vim/vimrc
 :map J J
 
 set surround
+set argtextobj
+set highlightedyank
 
 " Navigate split windows.
 nnoremap <C-H> <C-W>h
