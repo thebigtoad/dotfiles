@@ -158,19 +158,30 @@ directory_history_fuzzy_find() {
     dir_list="$(dirs -v | head -11 | tail -n+2)"
   fi
 
-  if command -v fzf >/dev/null; then
-    # shellcheck disable=SC2039
-    # herestrings mess up the syntax highlighting for some reason
-    selected_line="$(echo "${dir_list}" | fzf)"
+  if [[ -n "${dir_list}" ]]; then
+    if command -v fzf >/dev/null; then
+      # shellcheck disable=SC2039
+      # herestrings mess up the syntax highlighting for some reason
+      selected_line="$(echo "${dir_list}" | fzf || echo "" )"
 
-    # shellcheck disable=SC2039
-    # herestrings mess up the syntax highlighting for some reason
-    dir_num="$(echo "${selected_line}" | cut -f1)"
+      if [[ -n "${selected_line}" ]]; then
+        # shellcheck disable=SC2039
+        # herestrings mess up the syntax highlighting for some reason
+        dir_num="$(echo "${selected_line}" | cut -f1)"
 
-    cd -"${dir_num}" > /dev/null
+        cd -"${dir_num}" > /dev/null
+      else
+        # Nothing selected, i.e. user hit ctrl-c
+        return 1
+      fi
+    else
+      # Fallback when fzf not installed
+      # shellcheck disable=2039
+      echo "${dir_list}"
+    fi
   else
-    # shellcheck disable=2039
-    echo "${dir_list}"
+    # Dir list empty
+    return 1
   fi
 }
 
